@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %} <!-- Добавляем эту строку для загрузки статических файлов -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Real-time Clock with Special Offers</title>
+    <script>
+        function updateTime() {
+            fetch('/time/update/')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("time").textContent = data.time;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        setInterval(updateTime, 1000);
+    </script>
+</head>
+<body>
+    <div id="time"></div>
+    <div id="offer">Скидки только в это время!</div>
+    <iframe width="448" height="448" src="https://www.youtube.com/embed/86mr6kfUdJo" title="ALONE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    
+</body>
+</html>
